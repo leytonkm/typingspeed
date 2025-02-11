@@ -11,30 +11,9 @@ complete_list = data['typing_test_words']
 random_50 = random.sample(complete_list, 50)
 
 typing_test_string = ' '.join(random_50)
-print(typing_test_string)
+print(typing_test_string + '\n')
+user_text = input('type the following text as fast as you can!')
+correct_chars = user_text & typing_test_string
+correct_chars_length = len(correct_chars)
 
-pygame.init()
-screen = pygame.display.set_mode((600, 200))
-font = pygame.font.Font(None, 36)
 
-text = ""
-running = True
-while running:
-    screen.fill((255, 255, 255))
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RETURN:
-                print("User Typed:", text)
-                running = False
-            elif event.key == pygame.K_BACKSPACE:
-                text = text[:-1]
-            else:
-                text += event.unicode
-
-    render_text = font.render(text, True, (0, 0, 0))
-    screen.blit(render_text, (50, 100))
-    pygame.display.flip()
-
-pygame.quit()
